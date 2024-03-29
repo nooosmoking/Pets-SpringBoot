@@ -11,4 +11,10 @@ public class MainController {
 
         return "kitten.html";
     }
+
+    @RequestMapping("/dog")
+    public String dog(){
+
+        return "dog.html";
+    }
 }
