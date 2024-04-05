@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
+    @RequestMapping("/")
+    public String home(@RequestParam String color, Model page){
+        page.addAttribute("color", color);
+        return "main.html";
+    }
+
     @RequestMapping("/pet")
     public String pet(@RequestParam String petType, @RequestParam String color, Model page){
         page.addAttribute("petType", petType);
