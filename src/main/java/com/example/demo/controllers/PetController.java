@@ -1,12 +1,27 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Pet;
+import com.example.demo.servises.PetService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
-public class MainController {
+@AllArgsConstructor
+public class PetController {
+
+    private final PetService petService;
+
+    @RequestMapping("/all_pets")
+    public String viewPets(Model model){
+        List<Pet> allPets = petService.findAll();
+        model.addAttribute("pets", allPets);
+        return "pets.html";
+    }
 
     @RequestMapping("/")
     public String home(@RequestParam String color, Model page){
