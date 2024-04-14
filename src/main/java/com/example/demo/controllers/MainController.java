@@ -11,6 +11,8 @@ public class MainController {
     @RequestMapping("/")
     public String home(@RequestParam String color, Model page){
         page.addAttribute("color", color);
+        page.addAttribute("urlDog", "window.location.href='http://localhost:8080/pet?petType=dog&color=" + color +"'");
+        page.addAttribute("urlKitten", "window.location.href='http://localhost:8080/pet?petType=kitten&color=" + color +"'");
         return "main.html";
     }
 

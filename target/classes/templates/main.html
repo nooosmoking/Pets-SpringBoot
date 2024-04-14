@@ -18,7 +18,7 @@
 </head>
 <body>
 <h1><span th:style="'color: ' + ${color}" th:text="'This site is for choosing a pet'"></span></h1>
-<a th:style="'color: ' + ${color}" class="custom-button" th:href="@{'http://localhost:8080/pet?petType=kitten&color=' + ${color}}">Kitten</a>
-<a th:style="'color: ' + ${color}" class="custom-button" th:href="@{'http://localhost:8080/pet?petType=dog&color=' + ${color}}">Dog</a>
+<button class="custom-button" th:style="'background-color: ' + ${color}" th:attr="onclick=${urlKitten}">Kitten</button>
+<button class="custom-button" th:style="'background-color: ' + ${color}" th:attr="onclick=${urlDog}">Dog</button>
 </body>
 </html>
