@@ -5,10 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pets</title>
+    <style th:inline="css">
+        table {
+            border: 2px solid [[${color}]];
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid [[${color}]];
+            padding: 8px;
+        }
+        .custom-button {
+            font-size: 20px;
+            color: white;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 0 #000, 1px 1px 0 #000;
+            border: 2px solid ${color};
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Pets</h1>
-<h2>That`s all pets:</h2>
+<h1><span th:style="'color: ' + ${color}" th:text="'Pets'"></span></h1>
+<h2><span th:style="'color: ' + ${color}" th:text="'That`s all pets:'"></span></h2>
 <table>
     <tr>
         <th>PET TYPE</th>
@@ -23,5 +41,9 @@
         <td><img th:src="@{'/' + ${p.petType} + '.jpeg'}" alt="Pet"></td>
     </tr>
 </table>
+
+<h2><span th:style="'color: ' + ${color}" th:text="'Here you can add another pet:'"></span></h2>
+<button class="custom-button" th:style="'background-color: ' + ${color}" th:attr="onclick=${urlKitten}">Kitten</button>
+<button class="custom-button" th:style="'background-color: ' + ${color}" th:attr="onclick=${urlDog}">Dog</button>
 </body>
 </html>

@@ -16,19 +16,14 @@ public class PetController {
 
     private final PetService petService;
 
-    @RequestMapping("/all_pets")
-    public String viewPets(Model model){
+    @RequestMapping("/pets")
+    public String viewPets(@RequestParam(required = false) String color, Model page){
         List<Pet> allPets = petService.findAll();
-        model.addAttribute("pets", allPets);
-        return "pets.html";
-    }
-
-    @RequestMapping("/")
-    public String home(@RequestParam String color, Model page){
+        page.addAttribute("pets", allPets);
         page.addAttribute("color", color);
         page.addAttribute("urlDog", "window.location.href='http://localhost:8080/pet?petType=dog&color=" + color +"'");
         page.addAttribute("urlKitten", "window.location.href='http://localhost:8080/pet?petType=kitten&color=" + color +"'");
-        return "main.html";
+        return "pets.html";
     }
 
     @RequestMapping("/pet")
