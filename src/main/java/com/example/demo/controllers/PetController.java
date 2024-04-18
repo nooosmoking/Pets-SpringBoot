@@ -5,6 +5,8 @@ import com.example.demo.servises.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,8 +18,20 @@ public class PetController {
 
     private final PetService petService;
 
-    @RequestMapping("/pets")
+    @GetMapping("/pets")
     public String viewPets(@RequestParam(required = false) String color, Model page){
+        List<Pet> allPets = petService.findAll();
+        page.addAttribute("pets", allPets);
+        page.addAttribute("color", color);
+        page.addAttribute("urlDog", "window.location.href='http://localhost:8080/pet?petType=dog&color=" + color +"'");
+        page.addAttribute("urlKitten", "window.location.href='http://localhost:8080/pet?petType=kitten&color=" + color +"'");
+        return "pets.html";
+    }
+
+    @PostMapping("/pets")
+    public String addPet(@RequestParam String petType,@RequestParam String name,
+                         @RequestParam String color, Model page){
+        petService.addPet(new Pet(petType, name, color));
         List<Pet> allPets = petService.findAll();
         page.addAttribute("pets", allPets);
         page.addAttribute("color", color);

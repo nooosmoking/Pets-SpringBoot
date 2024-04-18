@@ -9,6 +9,7 @@
         body {
             color: [[${color}]];
             margin: 10px;
+            background-color: grey;
         }
         table {
             border: 2px solid [[${color}]];
@@ -19,35 +20,58 @@
             padding: 8px;
         }
         .custom-button {
-            font-size: 20px;
+            font-size: 18px;
             color: white;
             background-color: [[${color}]];
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 0 #000, 1px 1px 0 #000;
             border: 2px solid ${color};
             padding: 10px 20px;
+            margin-right: 10px;
+        }
+        input{
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 15px;
         }
     </style>
 </head>
-<body>
-<h1><span th:text="'Pets'"></span></h1>
-<h2><span th:text="'That`s all pets:'"></span></h2>
-<table>
-    <tr>
-        <th>PET TYPE</th>
-        <th>PET NAME</th>
-        <th>PET COLOR</th>
-        <th>PET PICTURE</th>
-    </tr>
-    <tr th:each="p: ${pets}">
-        <td th:text="${p.petType}"></td>
-        <td th:text="${p.name}"></td>
-        <td th:text="${p.color}"></td>
-        <td><img th:src="@{'/' + ${p.petType} + '.jpeg'}" th:alt="${p.petType}"></td>
-    </tr>
-</table>
+    <body>
+        <h1><span th:text="'Pets'"></span></h1>
+        <h2><span th:text="'That`s all pets:'"></span></h2>
+        <table>
+            <tr>
+                <th>PET TYPE</th>
+                <th>PET NAME</th>
+                <th>PET COLOR</th>
+                <th>PET PICTURE</th>
+            </tr>
+            <tr th:each="p: ${pets}">
+                <td th:text="${p.petType}"></td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.color}"></td>
+                <td><img th:src="@{'/' + ${p.petType} + '.jpeg'}" th:alt="${p.petType}"></td>
+            </tr>
+        </table>
 
-<h2><span th:text="'Here you can add another pet:'"></span></h2>
-<button class="custom-button" th:attr="onclick=${urlKitten}">Kitten</button>
-<button class="custom-button" th:attr="onclick=${urlDog}">Dog</button>
-</body>
+        <h2><span th:text="'Here you can add another pet:'"></span></h2>
+        <form action="/pets" method="POST"></form>
+        <div>
+            <input placeholder="Name of pet" type="text" name="name" value="" />
+        </div>
+        <div>
+            <input placeholder="Color of pet" type="text" name="color" value="" />
+        </div>
+        <div>
+            <input type="radio" id="kitten"  name="petType" value="Kitten">
+            <label for="kitten" >Kitten</label>
+            <input type="radio" id="dog" name="petType" value="Dog">
+            <label for="dog" >Dog</label>
+        </div>
+    <div>
+        <button class="custom-button" type="submit">Add new pet</button>
+        <button class="custom-button" type="reset">Reset pet</button>
+    </div>
+    </body>
 </html>
