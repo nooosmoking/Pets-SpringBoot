@@ -8,6 +8,6 @@ import lombok.Data;
 public class Pet {
     private String petType;
     private String name;
-    private String color;
+    private String petColor;
 }
 

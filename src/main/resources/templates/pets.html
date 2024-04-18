@@ -50,18 +50,19 @@
             <tr th:each="p: ${pets}">
                 <td th:text="${p.petType}"></td>
                 <td th:text="${p.name}"></td>
-                <td th:text="${p.color}"></td>
+                <td th:text="${p.petColor}"></td>
                 <td><img th:src="@{'/' + ${p.petType} + '.jpeg'}" th:alt="${p.petType}"></td>
             </tr>
         </table>
 
         <h2><span th:text="'Here you can add another pet:'"></span></h2>
         <form action="/pets" method="POST">
+            <input type="hidden" name="color" th:value="${color}" />
             <div>
                 <input placeholder="Name of pet" type="text" name="name" value="" />
             </div>
             <div>
-                <input placeholder="Color of pet" type="text" name="color" value="" />
+                <input placeholder="Color of pet" type="text" name="petColor" value="" />
             </div>
             <div>
                 <input type="radio" id="kitten"  name="petType" value="Kitten">

@@ -23,27 +23,16 @@ public class PetController {
         List<Pet> allPets = petService.findAll();
         page.addAttribute("pets", allPets);
         page.addAttribute("color", color);
-        page.addAttribute("urlDog", "window.location.href='http://localhost:8080/pet?petType=dog&color=" + color +"'");
-        page.addAttribute("urlKitten", "window.location.href='http://localhost:8080/pet?petType=kitten&color=" + color +"'");
         return "pets.html";
     }
 
     @PostMapping("/pets")
-    public String addPet(@RequestParam String petType,@RequestParam String name,
-                         @RequestParam String color, Model page){
-        petService.addPet(new Pet(petType.toLowerCase(), name, color));
+    public String addPet(@RequestParam(required = false) String color, Pet pet, Model page){
+        petService.addPet(pet);
         List<Pet> allPets = petService.findAll();
         page.addAttribute("pets", allPets);
         page.addAttribute("color", color);
-        page.addAttribute("urlDog", "window.location.href='http://localhost:8080/pet?petType=dog&color=" + color +"'");
-        page.addAttribute("urlKitten", "window.location.href='http://localhost:8080/pet?petType=kitten&color=" + color +"'");
         return "pets.html";
     }
 
-    @RequestMapping("/pet")
-    public String pet(@RequestParam String petType, @RequestParam String color, Model page){
-        page.addAttribute("petType", petType);
-        page.addAttribute("color", color);
-        return "pet.html";
-    }
 }
