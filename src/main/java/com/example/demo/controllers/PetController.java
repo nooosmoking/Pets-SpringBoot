@@ -31,7 +31,7 @@ public class PetController {
     @PostMapping("/pets")
     public String addPet(@RequestParam String petType,@RequestParam String name,
                          @RequestParam String color, Model page){
-        petService.addPet(new Pet(petType, name, color));
+        petService.addPet(new Pet(petType.toLowerCase(), name, color));
         List<Pet> allPets = petService.findAll();
         page.addAttribute("pets", allPets);
         page.addAttribute("color", color);

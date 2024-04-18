@@ -56,22 +56,23 @@
         </table>
 
         <h2><span th:text="'Here you can add another pet:'"></span></h2>
-        <form action="/pets" method="POST"></form>
-        <div>
-            <input placeholder="Name of pet" type="text" name="name" value="" />
-        </div>
-        <div>
-            <input placeholder="Color of pet" type="text" name="color" value="" />
-        </div>
-        <div>
-            <input type="radio" id="kitten"  name="petType" value="Kitten">
-            <label for="kitten" >Kitten</label>
-            <input type="radio" id="dog" name="petType" value="Dog">
-            <label for="dog" >Dog</label>
-        </div>
-    <div>
-        <button class="custom-button" type="submit">Add new pet</button>
-        <button class="custom-button" type="reset">Reset pet</button>
-    </div>
+        <form action="/pets" method="POST">
+            <div>
+                <input placeholder="Name of pet" type="text" name="name" value="" />
+            </div>
+            <div>
+                <input placeholder="Color of pet" type="text" name="color" value="" />
+            </div>
+            <div>
+                <input type="radio" id="kitten"  name="petType" value="Kitten">
+                <label for="kitten" >Kitten</label>
+                <input type="radio" id="dog" name="petType" value="Dog">
+                <label for="dog" >Dog</label>
+            </div>
+            <div>
+                <button class="custom-button" type="submit">Add new pet</button>
+                <button class="custom-button" type="reset">Reset pet</button>
+            </div>
+        </form>
     </body>
 </html>

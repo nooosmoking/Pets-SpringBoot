@@ -15,7 +15,6 @@ public class PetService {
     }
 
     public List<Pet> findAll(){
-        petList.add(new Pet("dog", "Jack", "White"));
         return petList;
     }
 }
